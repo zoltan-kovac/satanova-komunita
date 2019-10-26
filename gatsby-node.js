@@ -5,6 +5,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+
   const result = await graphql(
     `
       {
@@ -53,8 +54,13 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
+  /* Ensures we are processing only markdown files */
   if (node.internal.type === `MarkdownRemark`) {
+
+    /* Use `createFilePath` to turn markdown files in our `data/faqs` directory into `/faqs/slug` */
     const value = createFilePath({ node, getNode })
+
+    /* Creates new query'able field with name of 'slug' */
     createNodeField({
       name: `slug`,
       node,

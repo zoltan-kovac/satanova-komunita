@@ -1,12 +1,26 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
+    title: `Satanova Komunita`,
+    author: `Zoltan Kovac`,
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `http://satanovakomunita.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      facebook: `satanovakomunita`,
+      twitter: `satanovakomunita`,
     },
+    menuLinks: [{
+      name: 'Úvod',
+      link: '/'
+    },{
+      name: 'O nás',
+      link: '/o-nas'
+    }, {
+      name: 'Novinky',
+      link: '/novinky'
+    }, {
+      name:'Kontakt',
+      link:'/kontakt'
+    }]
   },
   plugins: [
     {
@@ -14,6 +28,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/news`,
+        name: `news`,
       },
     },
     {
@@ -75,5 +96,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-material-ui`,
   ],
 }
