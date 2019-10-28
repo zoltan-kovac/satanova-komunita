@@ -8,15 +8,15 @@ module.exports = {
       facebook: `satanovakomunita`,
       twitter: `satanovakomunita`,
     },
-    menuLinks: [{
-      name: 'Úvod',
-      link: '/'
-    },{
+    menuLinks: [ {
+      name: 'Novinky',
+      link: '/novinky'
+    }, {
       name: 'O nás',
       link: '/o-nas'
     }, {
-      name: 'Novinky',
-      link: '/novinky'
+      name: 'Regionálne bunky',
+      link: '/regionalne-bunky'
     }, {
       name:'Kontakt',
       link:'/kontakt'

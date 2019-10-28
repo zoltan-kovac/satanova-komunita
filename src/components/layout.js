@@ -1,8 +1,35 @@
 import React from "react"
 import { Link } from "gatsby"
 import { rhythm, scale } from "../utils/typography"
-import Header from './Header'
+import Navigation from './Navigation'
 import Footer from './Footer'
+import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: '#333',
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#0044ff',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    // error: will use the default color
+  },
+});
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+}));
 
 export default function Layout({
   location,
@@ -11,6 +38,7 @@ export default function Layout({
 }) {
   const rootPath = `${__PATH_PREFIX__}/`
   let header
+  const classes = useStyles()
 
   if (location.pathname === rootPath) {
     header = (
@@ -56,10 +84,12 @@ export default function Layout({
   }
 
   return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
+    <div className={classes.root}>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
+      </ThemeProvider>
+    </div>
   )
 }

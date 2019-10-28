@@ -51,48 +51,52 @@ export default function Root({
 
   return (
     <Layout location={location}>
-      <SEO title="All posts" />
+      <SEO title="Úvod" />
       <Container>
         <Box my={8}>
-          <Grid container className={classes.root} spacing={2}>
-          {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug
+          <Grid container spacing={3}>
+            <Grid item container xs={8}>-</Grid>
 
-            return (
-              <Grid item xs={4}>
-                <article key={node.fields.slug}>
-                  <Card className={classes.card}>
-                    <CardActionArea>
-                      <Link to={node.fields.slug}>
-                        <CardHeader
-                          title={title}
-                          subheader={node.frontmatter.date}
-                        />
-                        {/* <CardMedia
-                          className={classes.media}
-                          image="/static/images/cards/contemplative-reptile.jpg"
-                          title="Contemplative Reptile"
-                        /> */}
-                        <CardContent>
-                          <Typography variant="body2" color="textSecondary" component="p"  dangerouslySetInnerHTML={{
-                            __html: node.frontmatter.description || node.excerpt,
-                          }} />
-                        </CardContent>
-                      </Link>
-                    </CardActionArea>
-                    {/* <CardActions>
-                      <Button size="small" color="primary">
-                        <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                          {title}
-                        </Link>
-                      </Button>
-                    </CardActions> */}
-                  </Card>
-                </article>
-              </Grid>
-            )
-          })}
-        </Grid>
+            <Grid item container xs={4} spacing={3}>
+              {posts.map(({ node }) => {
+                const title = node.frontmatter.title || node.fields.slug
+
+                return (
+                  <Grid item xs={12}>
+                    <article key={node.fields.slug}>
+                      <Card className={classes.card}>
+                        <CardActionArea>
+                          <Link to={node.fields.slug}>
+                            <CardHeader
+                              title={title}
+                              subheader={node.frontmatter.date}
+                            />
+                            {/* <CardMedia
+                              className={classes.media}
+                              image="/static/images/cards/contemplative-reptile.jpg"
+                              title="Contemplative Reptile"
+                            /> */}
+                            <CardContent>
+                              <Typography variant="body2" color="textSecondary" component="p"  dangerouslySetInnerHTML={{
+                                __html: node.frontmatter.description || node.excerpt,
+                              }} />
+                            </CardContent>
+                          </Link>
+                        </CardActionArea>
+                        {/* <CardActions>
+                          <Button size="small" color="primary">
+                            <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                              {title}
+                            </Link>
+                          </Button>
+                        </CardActions> */}
+                      </Card>
+                    </article>
+                  </Grid>
+                )
+              })}
+            </Grid>
+          </Grid>
         </Box>
       </Container>
     </Layout>
