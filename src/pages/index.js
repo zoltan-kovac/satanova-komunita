@@ -31,7 +31,7 @@ export default function Root({
 }) {
   const classes = useStyles()
   const { allMarkdownRemark: { edges: posts } } = useStaticQuery(graphql`query RootQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "news"}}}, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
@@ -42,6 +42,7 @@ export default function Root({
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            templateKey
           }
         }
       }
@@ -59,6 +60,8 @@ export default function Root({
             <Grid item container xs={12} md={4} spacing={3}>
               {posts.map(({ node }) => {
                 const title = node.frontmatter.title || node.fields.slug
+                const templateKey = node.frontmatter.templateKey
+                console.log('templateKey', templateKey)
 
                 return (
                   <Grid item xs={12}>
