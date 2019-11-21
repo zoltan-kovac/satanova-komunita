@@ -17,7 +17,6 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
   card: {
@@ -77,7 +76,7 @@ export default function Root({
                               title="Contemplative Reptile"
                             /> */}
                             <CardContent>
-                              <Typography variant="body2" color="textSecondary" component="p"  dangerouslySetInnerHTML={{
+                              <p dangerouslySetInnerHTML={{
                                 __html: node.frontmatter.description || node.excerpt,
                               }} />
                             </CardContent>

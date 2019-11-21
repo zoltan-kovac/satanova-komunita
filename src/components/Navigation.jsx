@@ -9,13 +9,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    // backgroundColor: 'transparent',
-    // boxShadow: 'none'
-  },
   title: {
     flexGrow: 1,
   },
@@ -42,7 +37,7 @@ export default function Navigation() {
     <AppBar position="static" className={classes.root}>
       <Container>
         <Toolbar disableGutters>
-          <Typography variant="h5" className={classes.title}>
+          <div className={classes.title}>
             <Link
               style={{
                 boxShadow: `none`,
@@ -54,7 +49,7 @@ export default function Navigation() {
             >
               {siteMetadata.title}
             </Link>
-          </Typography>
+          </div>
 
           {siteMetadata.menuLinks.map(({ name, link }) => 
             <Link
@@ -66,7 +61,7 @@ export default function Navigation() {
               to={link}
             >
               <Button color="inherit">
-                  {name}
+                {name}
               </Button>
             </Link>
           )}

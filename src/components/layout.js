@@ -1,11 +1,20 @@
 import React from "react"
-import { Link } from "gatsby"
-import { rhythm, scale } from "../utils/typography"
 import Navigation from './Navigation'
 import Footer from './Footer'
-import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles'
+import "typeface-montserrat"
+import "typeface-merriweather"
+import { createMuiTheme, ThemeProvider, makeStyles, responsiveFontSizes } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Montserrat',
+      'sans-serif',
+    ].join(','),
+    // fontSize: 16,
+    // htmlFontSize: 20,
+  },
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -21,7 +30,23 @@ const theme = createMuiTheme({
     },
     // error: will use the default color
   },
+  // spacing: 10,
+  overrides: {
+    MuiAppBar: {
+      root: {
+        paddingTop: '20px',
+        paddingBottom: '20px',
+      },
+      colorPrimary: {
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        color: '#333',
+      },
+    },
+  },
 });
+
+theme = responsiveFontSizes(theme)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,63 +57,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Layout({
-  location,
-  title,
   children
 }) {
-  const rootPath = `${__PATH_PREFIX__}/`
-  let header
   const classes = useStyles()
-
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={{
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h3>
-    )
-  }
 
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
+        <CssBaseline>
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+        </CssBaseline>
       </ThemeProvider>
     </div>
   )
