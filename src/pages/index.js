@@ -18,6 +18,9 @@ import Grid from '@material-ui/core/Grid'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+
+window.location.assign('https://www.facebook.com/SatanovakomunitaSK/')
+
 const useStyles = makeStyles({
   card: {
   },
