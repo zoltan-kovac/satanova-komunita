@@ -1,3 +1,4 @@
+
 import React from "react"
 import {
   graphql,
@@ -29,6 +30,8 @@ const useStyles = makeStyles({
 export default function Root({
   location,
 }) {
+  window.location.assign('https://www.facebook.com/SatanovakomunitaSK/')
+
   const classes = useStyles()
   const { allMarkdownRemark: { edges: posts } } = useStaticQuery(graphql`query RootQuery {
     allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "news"}}}, sort: { fields: [frontmatter___date], order: DESC }) {
@@ -49,58 +52,60 @@ export default function Root({
     }
   }`)
 
-  return (
-    <Layout location={location}>
-      <SEO title="Úvod" />
-      <Container>
-        <Box my={8}>
-          <Grid container spacing={3}>
-            <Grid item container xs={12} md={8}>-</Grid>
+  return <></>
 
-            <Grid item container xs={12} md={4} spacing={3}>
-              {posts.map(({ node }) => {
-                const title = node.frontmatter.title || node.fields.slug
-                const templateKey = node.frontmatter.templateKey
-                console.log('templateKey', templateKey)
+  // return (
+  //   <Layout location={location}>
+  //     <SEO title="Úvod" />
+  //     <Container>
+  //       <Box my={8}>
+  //         <Grid container spacing={3}>
+  //           <Grid item container xs={12} md={8}>-</Grid>
 
-                return (
-                  <Grid item xs={12}>
-                    <article key={node.fields.slug}>
-                      <Card className={classes.card}>
-                        <CardActionArea>
-                          <Link to={node.fields.slug}>
-                            <CardHeader
-                              title={title}
-                              subheader={node.frontmatter.date}
-                            />
-                            {/* <CardMedia
-                              className={classes.media}
-                              image="/static/images/cards/contemplative-reptile.jpg"
-                              title="Contemplative Reptile"
-                            /> */}
-                            <CardContent>
-                              <p dangerouslySetInnerHTML={{
-                                __html: node.frontmatter.description || node.excerpt,
-                              }} />
-                            </CardContent>
-                          </Link>
-                        </CardActionArea>
-                        {/* <CardActions>
-                          <Button size="small" color="primary">
-                            <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                              {title}
-                            </Link>
-                          </Button>
-                        </CardActions> */}
-                      </Card>
-                    </article>
-                  </Grid>
-                )
-              })}
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </Layout>
-  )
+  //           <Grid item container xs={12} md={4} spacing={3}>
+  //             {posts.map(({ node }) => {
+  //               const title = node.frontmatter.title || node.fields.slug
+  //               const templateKey = node.frontmatter.templateKey
+  //               console.log('templateKey', templateKey)
+
+  //               return (
+  //                 <Grid item xs={12}>
+  //                   <article key={node.fields.slug}>
+  //                     <Card className={classes.card}>
+  //                       <CardActionArea>
+  //                         <Link to={node.fields.slug}>
+  //                           <CardHeader
+  //                             title={title}
+  //                             subheader={node.frontmatter.date}
+  //                           />
+  //                           {/* <CardMedia
+  //                             className={classes.media}
+  //                             image="/static/images/cards/contemplative-reptile.jpg"
+  //                             title="Contemplative Reptile"
+  //                           /> */}
+  //                           <CardContent>
+  //                             <p dangerouslySetInnerHTML={{
+  //                               __html: node.frontmatter.description || node.excerpt,
+  //                             }} />
+  //                           </CardContent>
+  //                         </Link>
+  //                       </CardActionArea>
+  //                       {/* <CardActions>
+  //                         <Button size="small" color="primary">
+  //                           <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+  //                             {title}
+  //                           </Link>
+  //                         </Button>
+  //                       </CardActions> */}
+  //                     </Card>
+  //                   </article>
+  //                 </Grid>
+  //               )
+  //             })}
+  //           </Grid>
+  //         </Grid>
+  //       </Box>
+  //     </Container>
+  //   </Layout>
+  // )
 }
