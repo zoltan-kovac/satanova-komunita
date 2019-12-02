@@ -3,14 +3,12 @@ import {
   graphql,
   useStaticQuery,
 } from "gatsby"
-import Box from '@material-ui/core/Box'
+// import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Layout from "../../components/layout"
-import Typography from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+import AboutUs from './AboutUs'
+import Constitution from './Constitution'
 
 export default ({ location }) => {
   const { site: { siteMetadata } } = useStaticQuery(graphql
@@ -60,30 +58,9 @@ export default ({ location }) => {
 
   return (
     <Layout location={location} title={siteMetadata.siteTitle}>
-      <Container maxWidth="sm">
-          <Box mb={8}>
-            <Typography variant="h1" gutterBottom>O nás</Typography>
-            <Typography variant="body1">
-              <p>Satanizmus nie je len liberálne náboženstvo, ale tiež filozofia podporujúca mier, všestrannú rovnoprávnosť a princípy demokracie. Neuctievame síce Satana ani iných teistických bohov, ale uctievame prírodu, človeka a ľudstvo. Sme teda v pravom zmysle slova panteisti, hoci združujeme aj rozmanité formy ateizmu.</p>
-            </Typography>
-          </Box>
-          <Box mb={8}>
-            <Typography variant="h2" gutterBottom>Satanova Ústava</Typography>
-            <Typography variant="body1">
-              <p>Satanova ústava je základný dokument našej organizácie. V plnom znení a s vysvetlivkami ju nájdete tu.</p>
-            </Typography>
-
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6">
-                Podporujeme
-              </Typography>
-              <div>
-                <List dense={true}>
-                  {support.map(item => <ListItem><ListItemText primary={item} /></ListItem>)}
-                </List>
-              </div>
-            </Grid>
-          </Box>
+      <Container>
+        <AboutUs />
+        <Constitution />
       </Container>
     </Layout>
   )
