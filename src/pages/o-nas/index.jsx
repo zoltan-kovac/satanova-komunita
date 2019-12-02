@@ -12,7 +12,7 @@ import Constitution from './Constitution'
 
 export default ({ location }) => {
   const { site: { siteMetadata } } = useStaticQuery(graphql
-    `query AboutUsQuery{asdasd
+    `query AboutUsQuery{
       site {
         siteMetadata {
           title
