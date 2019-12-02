@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 export default function Root({
   location,
 }) {
-  window.location.assign('https://www.facebook.com/SatanovakomunitaSK/')
+  window && window.location.assign('https://www.facebook.com/SatanovakomunitaSK/')
 
   const classes = useStyles()
   const { allMarkdownRemark: { edges: posts } } = useStaticQuery(graphql`query RootQuery {
