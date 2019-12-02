@@ -30,10 +30,6 @@ const useStyles = makeStyles({
 export default function Root({
   location,
 }) {
-  if (window) {
-    window.location.assign('https://www.facebook.com/SatanovakomunitaSK/')
-  }
-
   const classes = useStyles()
   const { allMarkdownRemark: { edges: posts } } = useStaticQuery(graphql`query RootQuery {
     allMarkdownRemark(filter: {frontmatter: {templateKey: {eq: "news"}}}, sort: { fields: [frontmatter___date], order: DESC }) {
